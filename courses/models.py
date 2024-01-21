@@ -1,5 +1,7 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
+from django.db.models import Q
 
 
 class User(AbstractUser):
@@ -15,7 +17,8 @@ class ItemBase(models.Model):
     class Meta:
         abstract = True
     subject = models.CharField(max_length=255, null=False)
-    image = models.ImageField(upload_to='lessons/%Y/%m', default=None)
+    image = models.ImageField(upload_to='courses/%Y/%m', default=None)
+
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -35,9 +38,9 @@ class Course(ItemBase):
 class Lesson(ItemBase):
     class Meta:
         unique_together = ['subject', 'course']
-    content = models.TextField()
+    content = RichTextField()
     course = models.ForeignKey(Course,related_name="lessons" , on_delete=models.CASCADE, null=True, blank=True)
-    tags= models.ManyToManyField('Tag', blank=True, null=True)
+    tags= models.ManyToManyField('Tag', related_name="lessons",blank=True, null=True)
 
 class Tag(models.Model):
     name = models.CharField(max_length=50, unique=True)
