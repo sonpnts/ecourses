@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'rest_framework',
     'oauth2_provider',
-    'drf_yasg'
+    'drf_yasg',
+    'cloudinary'
 ]
 
 REST_FRAMEWORK = {
@@ -48,6 +49,10 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 2,
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.FormParser',
+        'rest_framework.parsers.MultiPartParser'
     )
 }
 
@@ -137,3 +142,11 @@ CKEDITOR_UPLOAD_PATH = "lessons/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dqec4llav",
+    api_key="752187729553174",
+    api_secret="LPw7aj9WseIgRmVct7bdppxfa5g"
+)

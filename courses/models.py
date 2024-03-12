@@ -2,10 +2,12 @@ from django.db import models
 from ckeditor.fields import RichTextField
 from django.contrib.auth.models import AbstractUser
 from django.db.models import Q
+from cloudinary.models import CloudinaryField
 
 
 class User(AbstractUser):
-    avatar = models.ImageField(upload_to='uploads/%Y/%m/%d/', null=True, blank=True)
+    # avatar = models.ImageField(upload_to='uploads/%Y/%m/%d/', null=True, blank=True)
+    avatar = CloudinaryField('image')
 
 class Category(models.Model):
     name = models.CharField(max_length=255, null=False, unique=True)
