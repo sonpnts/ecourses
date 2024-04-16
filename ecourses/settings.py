@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'course.apps.CourseConfig',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
+    'rest_framework',
+    'drf_yasg'
 ]
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/images"
@@ -88,6 +90,15 @@ DATABASES = {
 }
 
 import pymysql
+import cloudinary
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name="dqec4llav",
+    api_key="752187729553174",
+    api_secret="LPw7aj9WseIgRmVct7bdppxfa5g"
+)
 
 pymysql.install_as_MySQLdb()
 
