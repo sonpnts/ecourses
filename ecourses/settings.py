@@ -39,8 +39,20 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'rest_framework',
-    'drf_yasg'
+    'drf_yasg',
+    'oauth2_provider',
 ]
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    )
+}
+
+client_id = 'XqJbyyMA105kIlZxcIPjBMHq7uC4I2BEvFy4Nn97'
+client_secret = '63xravPvJDnYOiEPbiYc9uneeStT7A7gGEOpVlYpvAabOrkbRrJWO7GbSgPpNyQDnBuVHzBA1zpRQVfONgLWDbYAXyPsyj9nbEm64FWhfCiiWjltrAbvr2LvgdOSiuux'
+
 
 CKEDITOR_UPLOAD_PATH = "ckeditor/images"
 AUTH_USER_MODEL = 'course.User'
@@ -75,6 +87,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'ecourses.wsgi.application'
+
+ALLOWED_HOSTS = ['192.168.1.218']
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
